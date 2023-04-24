@@ -1,0 +1,47 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    respawn="true"
+    ns="sim1"
+/>
+<node
+    pkg="agitr"
+    type="agitr_pubvel"
+    name="agitr_pubvel"
+    required="true"
+    ns="sim1"
+/>
+<node
+    pkg="agitr"
+    type="agitr_subpose"
+    name="agitr_subpose"
+    output="screen"
+    ns="sim1"
+/>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    respawn="true"
+    ns="sim2"
+/>
+<node
+    pkg="turtlesim"
+    type="turtle_teleop_key"
+    name="turtle_teleop_key"
+    required="true"
+    ns="sim2"
+/>
+<node
+    pkg="agitr"
+    type="agitr_subpose"
+    name="agitr_subpose"
+    output="screen"
+    ns="sim2"
+/>
+
+</launch>
