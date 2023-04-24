@@ -1,0 +1,21 @@
+<launch>
+
+<node
+    pkg="beginner_tutorials"
+    type="talker.py"
+    name="talker.py"
+    respawn="true"
+    output="screen"
+    ns="sim1"
+/>
+<node
+    pkg="beginner_tutorials"
+    type="listener.py"
+    name="listener.py"
+    required="true"
+    output="screen"
+    ns="sim1"
+/>
+
+
+</launch>
