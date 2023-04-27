@@ -6,8 +6,5 @@ int main(int argc, char** argv) {
     ros::NodeHandle nh;
 
     ROS_INFO("hello ros");
-
-
-
     return 0;
 }

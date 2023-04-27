@@ -1,0 +1,23 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    respawn="true"
+/>
+<node
+    pkg="handle_turtlesim"
+    type="handle_turtlesim_pub"
+    name="handle_turtlesim_pub"
+    required="true"
+    output="screen"
+/>
+<node
+    pkg="handle_turtlesim"
+    type="handle_turtlesim_sub"
+    name="handle_turtlesim_sub"
+    output="screen"
+/>
+
+</launch>
