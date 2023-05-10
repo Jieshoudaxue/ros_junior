@@ -1,0 +1,22 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    required="true"
+/>
+<node
+    pkg="toggle_forward"
+    type="toggle_forward_server"
+    name="toggle_forward_server"
+    output="screen"
+/>
+<node
+    pkg="toggle_forward"
+    type="toggle_forward_client"
+    name="toggle_forward_client"
+    output="screen"
+/>
+
+</launch>
