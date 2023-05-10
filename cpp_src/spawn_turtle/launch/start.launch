@@ -1,0 +1,16 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    required="true"
+/>
+<node
+    pkg="spawn_turtle"
+    type="spawn_turtle_node"
+    name="spawn_turtle_node"
+    output="screen"
+/>
+
+</launch>
