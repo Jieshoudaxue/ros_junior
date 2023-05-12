@@ -1,0 +1,19 @@
+<launch>
+
+<node
+    pkg="srv_self"
+    type="server.py"
+    name="add_server"
+    respawn="true"
+    output="screen"
+/>
+
+<node
+    pkg="srv_self"
+    type="client.py"
+    name="add_client"
+    required="true"
+    output="screen"
+/>
+
+</launch>
