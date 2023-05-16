@@ -1,0 +1,16 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    spawn="true"
+/>
+<node
+    pkg="rosbag"
+    type="play"
+    name="play"
+    args="/home/ycao/Study/ros_noetic/catkin_ws/square.bag"
+/>
+
+</launch>

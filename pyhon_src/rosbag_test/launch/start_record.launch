@@ -1,0 +1,22 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    required="true"
+/>
+<node
+    pkg="turtlesim"
+    type="draw_square"
+    name="draw_square"
+    required="true"
+/>
+<node
+    pkg="rosbag"
+    type="record"
+    name="record"
+    args="-O /home/ycao/Study/ros_noetic/catkin_ws/square.bag /turtle1/cmd_vel /turtle1/pose"
+/>
+
+</launch>
