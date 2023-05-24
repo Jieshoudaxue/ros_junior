@@ -13,10 +13,10 @@
     required="true"
 />
 <node
-    pkg="rosbag"
-    type="record"
-    name="record"
-    args="-O /home/ycao/Study/ros_noetic/catkin_ws/square.bag /turtle1/cmd_vel /turtle1/pose"
+    pkg="rosbag_test"
+    type="rosbag_test_record"
+    name="bag_record"
+    args="-O /home/ycao/Study/ros_noetic/bag_dir/square_1.bag"
 />
 
 </launch>

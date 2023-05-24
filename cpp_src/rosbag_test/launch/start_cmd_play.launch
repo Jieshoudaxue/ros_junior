@@ -4,13 +4,14 @@
     pkg="turtlesim"
     type="turtlesim_node"
     name="turtlesim"
-    spawn="true"
+    required="true"
 />
 <node
     pkg="rosbag"
     type="play"
     name="play"
-    args="/home/ycao/Study/ros_noetic/catkin_ws/square.bag"
+    args="/home/ycao/Study/ros_noetic/bag_dir/square_0.bag"
+    output="screen"
 />
 
 </launch>
