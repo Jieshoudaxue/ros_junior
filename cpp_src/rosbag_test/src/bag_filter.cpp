@@ -85,25 +85,3 @@ int main(int argc, char ** argv) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function specify: base start and end offset time(sec), filter bag; base topic list, filter bag
-
-
-
