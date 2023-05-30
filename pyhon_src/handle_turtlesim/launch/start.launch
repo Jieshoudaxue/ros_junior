@@ -1,0 +1,26 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    respawn="true"
+/>
+
+<node
+    pkg="handle_turtlesim"
+    type="pub.py"
+    name="pub_velocity"
+    respawn="true"
+    output="screen"
+/>
+<node
+    pkg="handle_turtlesim"
+    type="sub.py"
+    name="sub_pose"
+    required="true"
+    output="screen"
+/>
+
+
+</launch>

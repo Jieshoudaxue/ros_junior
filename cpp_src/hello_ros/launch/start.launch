@@ -1,0 +1,12 @@
+<launch>
+
+<node
+    pkg="hello_ros"
+    type="hello_ros_node"
+    name="hello_ros_node"
+    required="true"
+    output="screen"
+/>
+
+
+</launch>

@@ -1,0 +1,20 @@
+<launch>
+
+<node
+    pkg="msg_self"
+    type="pub.py"
+    name="msg_pub"
+    respawn="true"
+    output="screen"
+/>
+
+<node
+    pkg="msg_self"
+    type="sub.py"
+    name="msg_sub"
+    respawn="true"
+    output="screen"
+/>
+
+
+</launch>

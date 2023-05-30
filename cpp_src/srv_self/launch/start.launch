@@ -1,0 +1,19 @@
+<launch>
+
+<node
+    pkg="srv_self"
+    type="srv_self_server"
+    name="srv_self_server"
+    respawn="true"
+    output="screen"
+/>
+
+<node
+    pkg="srv_self"
+    type="srv_self_client"
+    name="srv_self_client"
+    required="true"
+    output="screen"
+/>
+
+</launch>

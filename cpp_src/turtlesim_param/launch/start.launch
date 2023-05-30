@@ -1,0 +1,23 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    required="true"
+/>
+<node
+    pkg="turtlesim_param"
+    type="turtlesim_param_set_bg"
+    name="turtlesim_param_set_bg"
+    output="screen"
+/>
+<node
+    pkg="turtlesim_param"
+    type="turtlesim_param_pub_max"
+    name="turtlesim_param_pub_max"
+    output="screen"
+/>
+    <param name="/turtlesim_param_pub_max/max_vel" value="3" />
+
+</launch>

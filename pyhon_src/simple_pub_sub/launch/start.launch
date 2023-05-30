@@ -1,0 +1,20 @@
+<launch>
+
+<node
+    pkg="simple_pub_sub"
+    type="pub.py"
+    name="sim_pub"
+    respawn="true"
+    output="screen"
+/>
+
+<node
+    pkg="simple_pub_sub"
+    type="sub.py"
+    name="sim_sub"
+    respawn="true"
+    output="screen"
+/>
+
+
+</launch>

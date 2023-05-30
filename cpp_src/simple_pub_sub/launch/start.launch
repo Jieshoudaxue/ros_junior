@@ -1,0 +1,19 @@
+<launch>
+
+<node
+    pkg="simple_pub_sub"
+    type="sim_pub"
+    name="sim_pub"
+    required="true"
+    output="screen"
+/>
+
+<node
+    pkg="simple_pub_sub"
+    type="sim_sub"
+    name="sim_sub"
+    respawn="true"
+    output="screen"
+/>
+
+</launch>

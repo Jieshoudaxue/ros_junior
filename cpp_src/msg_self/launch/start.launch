@@ -1,0 +1,19 @@
+<launch>
+
+<node
+    pkg="msg_self"
+    type="msg_self_pub"
+    name="msg_self_pub"
+    required="true"
+    output="screen"
+/>
+
+<node
+    pkg="msg_self"
+    type="msg_self_sub"
+    name="msg_self_sub"
+    respawn="true"
+    output="screen"
+/>
+
+</launch>

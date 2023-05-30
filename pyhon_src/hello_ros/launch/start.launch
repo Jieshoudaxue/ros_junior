@@ -1,0 +1,12 @@
+<launch>
+
+<node
+    pkg="hello_ros"
+    type="hello.py"
+    name="hello_ros"
+    required="true"
+    output="screen"
+/>
+
+
+</launch>
