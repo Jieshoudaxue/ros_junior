@@ -10,7 +10,7 @@
     pkg="rosbag_test"
     type="rosbag_test_play"
     name="bag_play"
-    args="-b /home/ycao/Study/ros_noetic/bag_dir/square_1.bag -s 5 -r 1 -t /turtle1/cmd_vel"
+    args="-b /home/ycao/Study/ros_noetic/bag_dir/square_1.bag -t /turtle1/cmd_vel"
     output="screen"
 />
 </launch>

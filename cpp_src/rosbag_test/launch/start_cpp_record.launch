@@ -16,7 +16,9 @@
     pkg="rosbag_test"
     type="rosbag_test_record"
     name="bag_record"
-    args="-O /home/ycao/Study/ros_noetic/bag_dir/square_1.bag"
+    args="-O /home/ycao/Study/ros_noetic/bag_dir/square_1.bag -a"
+    output="screen"
+    launch-prefix="bash -c 'sleep 5; $0 $@'"
 />
 
 </launch>

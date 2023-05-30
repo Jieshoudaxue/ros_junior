@@ -10,7 +10,7 @@
     pkg="rosbag"
     type="play"
     name="play"
-    args="/home/ycao/Study/ros_noetic/bag_dir/square_0.bag"
+    args="/home/ycao/Study/ros_noetic/bag_dir/square_1.bag"
     output="screen"
 />
 

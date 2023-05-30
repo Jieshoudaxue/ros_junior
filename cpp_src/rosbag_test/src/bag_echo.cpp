@@ -1,10 +1,9 @@
 #include <ros/ros.h>
 #include <rosbag/bag.h>
 #include <rosbag/view.h>
-#include <turtlesim/Pose.h>
-#include <geometry_msgs/Twist.h>
-
-#include <boost/foreach.hpp>
+#include <topic_tools/shape_shifter.h>
+// https://github.com/facontidavide/ros_msg_parser
+#include "ros_msg_parser/ros_parser.hpp"
 #include "cxxopts.hpp"
 
 int main(int argc, char ** argv) {
@@ -14,6 +13,7 @@ int main(int argc, char ** argv) {
     cxxopts::Options options(argv[0], "parse cmd line");
     options.add_options()
         ("b,bag", "Name of the bag", cxxopts::value<std::string>())
+        ("t,topic", "topic name", cxxopts::value<std::string>())
         ("h,help", "show help");
 
     auto result = options.parse(argc, argv);
@@ -23,11 +23,25 @@ int main(int argc, char ** argv) {
         return 0;
     }
 
-    std::string bag_name = "/home/ycao/Study/ros_noetic/bag_dir/square_1.bag";
+    if (!result.count("bag")) {
+        ROS_ERROR("please specify bag using -b");
+        return -1;
+    } 
+
+    if (!result.count("topic")) {
+        ROS_ERROR("please specify a topic using -t");
+        return -1;
+    } 
+
+    std::string bag_name;
     if (result.count("bag")) {
         bag_name = result["bag"].as<std::string>();
     }    
 
+    std::vector<std::string> topic_list;
+    if (result.count("topic")) {
+        topic_list.push_back(result["topic"].as<std::string>());
+    }  
 
     rosbag::Bag bag;
 
@@ -38,35 +52,37 @@ int main(int argc, char ** argv) {
         return -1;
     }
 
-    rosbag::View view(bag);
-    ROS_INFO("starting to parse bag...");
+    rosbag::TopicQuery topic_query(topic_list);
+    rosbag::View view(bag, topic_query);
 
-    std::string pose_def;
-    std::string cmd_def;
+    RosMsgParser::ParsersCollection parsers;
+    for (const rosbag::ConnectionInfo* connection : view.getConnections()) {
+        const std::string& topic_name = connection->topic;
+        parsers.registerParser(topic_name, *connection);
+    }
+
+    ROS_INFO("starting to parse bag...");
     for(const rosbag::MessageInstance& item : view) {
         std::string topic_name = item.getTopic();
         std::string data_type = item.getDataType();
         std::string md5_val = item.getMD5Sum();
         double time_sec = item.getTime().toSec();
+        std::string msg_def = item.getMessageDefinition();
 
-        if (topic_name == "/turtle1/pose") {
-            turtlesim::Pose::ConstPtr msg = item.instantiate<turtlesim::Pose>();
-            ROS_INFO("[%s : %s : %s : %lf] x = %f, y = %f, theta = %f", 
-                    topic_name.c_str(), data_type.c_str(), md5_val.c_str(), time_sec, msg->x, msg->y, msg->theta);
-
-            pose_def = item.getMessageDefinition();
-        } else if (topic_name == "/turtle1/cmd_vel") {
-            geometry_msgs::Twist::ConstPtr msg = item.instantiate<geometry_msgs::Twist>();
-            ROS_INFO("[%s : %s : %s : %lf] linear.x = %f, linear.y = %f, linear.z = %f", 
-                    topic_name.c_str(), data_type.c_str(), md5_val.c_str(), time_sec, msg->linear.x, msg->linear.y, msg->linear.z);
-
-            cmd_def = item.getMessageDefinition();
+        ROS_INFO("--------- %s ----------\n", topic_name.c_str());
+        const auto deserialized_msg = parsers.deserialize(topic_name, item);
+        for (const auto& it : deserialized_msg->renamed_vals) {
+            const std::string& key = it.first;
+            const double value = it.second;
+            ROS_INFO(" %s = %f\n", key.c_str(), value);
         }
 
+        for (const auto& it : deserialized_msg->flat_msg.name) {
+            const std::string& key = it.first.toStdString();
+            const std::string& value = it.second;
+            ROS_INFO(" %s = %s\n", key.c_str(), value.c_str());
+        }
     }
-
-    ROS_INFO("/turtle1/pose message definition: \n%s\n", pose_def.c_str());
-    ROS_INFO("/turtle1/cmd_vel message definition: \n%s", cmd_def.c_str());
 
     return 0;
 }

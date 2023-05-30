@@ -9,12 +9,12 @@ project(rosbag_test)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   topic_tools
-  geometry_msgs
   rosbag
   roscpp
   rospy
   turtlesim
 )
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -116,11 +116,14 @@ catkin_package(
 ## Build ##
 ###########
 
+add_subdirectory(thirdparty/ros_msg_parser)
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
   include/rosbag_test
   ${catkin_INCLUDE_DIRS}
+  thirdparty/ros_msg_parser/include
 )
 
 ## Declare a C++ library
@@ -156,6 +159,7 @@ target_link_libraries(${PROJECT_NAME}_record
   ${catkin_LIBRARIES}
 )
 target_link_libraries(${PROJECT_NAME}_echo
+  ros_msg_parser
   ${catkin_LIBRARIES}
 )
 target_link_libraries(${PROJECT_NAME}_filter
