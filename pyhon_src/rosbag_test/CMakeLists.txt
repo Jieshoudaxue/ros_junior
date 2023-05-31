@@ -165,6 +165,7 @@ catkin_install_python(PROGRAMS
   scripts/bag_echo.py
   scripts/bag_filter.py
   scripts/bag_record.py
+  scripts/bag_play.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

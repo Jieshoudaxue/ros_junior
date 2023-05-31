@@ -40,7 +40,7 @@ def main():
   args=parser.parse_args()
 
   if not os.path.isfile(args.bag):
-      logging.error("%s is no found!" %args.bag)
+      logging.error("%s is not found!" %args.bag)
       return
 
   echo = BagEcho(args.bag, args.topics)
