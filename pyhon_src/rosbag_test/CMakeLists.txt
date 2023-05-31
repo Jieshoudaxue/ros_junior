@@ -2,19 +2,18 @@ cmake_minimum_required(VERSION 3.0.2)
 project(rosbag_test)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
+# add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  topic_tools
   rosbag
   roscpp
   rospy
   turtlesim
+  roslib
 )
-
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -116,14 +115,11 @@ catkin_package(
 ## Build ##
 ###########
 
-add_subdirectory(thirdparty/ros_msg_parser)
-
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include/rosbag_test
+# include
   ${catkin_INCLUDE_DIRS}
-  thirdparty/ros_msg_parser/include
 )
 
 ## Declare a C++ library
@@ -139,10 +135,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_record src/bag_record.cpp)
-add_executable(${PROJECT_NAME}_echo src/bag_echo.cpp)
-add_executable(${PROJECT_NAME}_filter src/bag_filter.cpp)
-add_executable(${PROJECT_NAME}_play src/bag_play.cpp)
+# add_executable(${PROJECT_NAME}_node src/rosbag_test_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -155,19 +148,10 @@ add_executable(${PROJECT_NAME}_play src/bag_play.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}_record
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(${PROJECT_NAME}_echo
-  ros_msg_parser
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(${PROJECT_NAME}_filter
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(${PROJECT_NAME}_play
-  ${catkin_LIBRARIES}
-)
+# target_link_libraries(${PROJECT_NAME}_node
+#   ${catkin_LIBRARIES}
+# )
+
 #############
 ## Install ##
 #############
@@ -177,10 +161,13 @@ target_link_libraries(${PROJECT_NAME}_play
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# catkin_install_python(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+  scripts/bag_echo.py
+  scripts/bag_filter.py
+  scripts/bag_record.py
+  scripts/bag_play.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html

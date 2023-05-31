@@ -1,0 +1,16 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    required="true"
+/>
+<node
+    pkg="rosbag_test"
+    type="bag_play.py"
+    name="bag_player"
+    args="-b /home/ycao/Study/ros_noetic/bag_dir/square_1.bag -t /turtle1/cmd_vel"
+    output="screen"
+/>
+</launch>

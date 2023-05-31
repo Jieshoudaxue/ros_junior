@@ -13,7 +13,7 @@ int main(int argc, char ** argv) {
     cxxopts::Options options(argv[0], "parse cmd line");
     options.add_options()
         ("b,bag", "Name of the bag", cxxopts::value<std::string>())
-        ("t,topic", "topic name", cxxopts::value<std::string>())
+        ("t,topic", "topic list", cxxopts::value<std::vector<std::string>>())
         ("h,help", "show help");
 
     auto result = options.parse(argc, argv);
@@ -40,7 +40,7 @@ int main(int argc, char ** argv) {
 
     std::vector<std::string> topic_list;
     if (result.count("topic")) {
-        topic_list.push_back(result["topic"].as<std::string>());
+        topic_list = result["topic"].as<std::vector<std::string>>();
     }  
 
     rosbag::Bag bag;
