@@ -17,6 +17,8 @@ class BagRecord(object):
     self.__output_bag = output_bag
     self.__topic_infos = topic_infos
     self.__subscribers = []
+    # __Lock is to protect bag write and bag close in two thread
+    # in python, this is necessary !
     self.__Lock = Lock()
     self.__bag = rosbag.Bag(self.__output_bag, "w")
     signal.signal(signal.SIGINT, self.signal_handler)
