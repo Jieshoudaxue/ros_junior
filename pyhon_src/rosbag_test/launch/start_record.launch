@@ -1,0 +1,24 @@
+<launch>
+
+<node
+    pkg="turtlesim"
+    type="turtlesim_node"
+    name="turtlesim"
+    required="true"
+/>
+<node
+    pkg="turtlesim"
+    type="draw_square"
+    name="draw_square"
+    required="true"
+/>
+<node
+    pkg="rosbag_test"
+    type="bag_record.py"
+    name="bag_recorder"
+    output="screen"
+    launch-prefix="bash -c 'sleep 5; $0 $@'"
+    args="-O /home/ycao/Study/ros_noetic/bag_dir/square_1.bag -a"
+/>
+
+</launch>
