@@ -26,7 +26,10 @@ class BagRecord(object):
   # msg must be placed before topic !!
   def topic_callback(self, msg, topic):
     self.__Lock.acquire()
-    self.__bag.write(topic, msg, rospy.Time.now())
+    try:
+      self.__bag.write(topic, msg, rospy.Time.now())
+    except Exception as e:
+      rospy.logerr("%s" %e)
     self.__Lock.release()
 
   def start_recorder(self):
@@ -67,6 +70,8 @@ def main():
     topic_infos = [(topic, msg_class) for topic, msg_class in rospy.get_published_topics() if topic in args.topics]
 
   recorder = BagRecord(output_bag, topic_infos)
+
+  rospy.loginfo("start recorder...")
 
   recorder.start_recorder()
 
