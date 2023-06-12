@@ -1,0 +1,195 @@
+按照十步学习法学习ros：
+
+1 第一部分 只做一次
+
+1.1 了解全局
+（1）ros是什么：ros即robat operating system，机器人操作系统，实质是一个应用程序软件框架，本身也是一个机器人通信框架，提供一系列程序库，算法库，调试工具等，帮助开发者快速开发机器人应用程序，遵循BSD开源协议，ros支持unix系统，如ubuntu。
+
+（2）ros有ros1和ros2，其中momenta主要使用ros1，也最成熟，也是学习ros2的基础。
+
+（3）ros的发版历史看这里：http://wiki.ros.org/Distributions ，ros推荐：ROS Noetic Ninjemys，LTS到2025.5，使用ubuntu20.04，具体看http://wiki.ros.org/cn/ROS/Installation
+
+（4）学习ros是一个很宽泛的概念，主要包括两大部分：
+    第一是ros本身的学习，包括ros环境搭建，ros基本概念，ros编译，ros命令，ros系列工具，ros c++ python编程；
+    第二是基于ros环境的机器人和算法库的学习，包括机器人平台搭建，机器人建模，机器人仿真，机器人视觉，机器人slam建图，机器人导航，机器人语音
+
+1.2 确定范围
+（1）工作中的学习原则：学习工作中用的上的，先学最急用的，然后学远期规划的学习
+（2）根据上面的原则，此次的学习范围是学习ros本身，不要求机器人和算法的知识
+
+1.3 定义目标
+（1）根据确定的学习范围，此次定义如下学习目标：要求掌握ros基本架构，会搭建并使用常用ros命令，了解基本概念，掌握ros c++ python编程，熟悉常用ros库的使用，最后能基于ros使用c++和python分别编写一组工具，即实现加载rosbag包，发topic，收topic，存topic到包，读取包内容，截取包。
+
+1.4 寻找资源
+ros官方：
+官网：www.ros.org
+ros源码：https://github.com/ros
+ros wiki：https://wiki.ros.org/cn
+ros answer: https://answers.ros.org/questions/
+ros news(停用了)：https://www.ros.org/news/
+ros discourse（用这个）: https://discourse.ros.org/
+ros Tutorials中文:
+http://wiki.ros.org/cn/ROS/Tutorials#ROS.2BaDhfw2VZegs-
+
+书籍：
+《机器人操作系统（ROS）浅析》（已下载）
+《ROS机器人开发实践》胡春旭 （已下载）
+
+博客：
+ROS史话36篇：https://www.guyuehome.com/Blog/index/_cate/ros-history/category/13/p/1
+
+古月博客
+ROS探索总结：http://www.guyuehome.com/Blog/index/category/11/p/4
+ros2入门教程：http://www.guyuehome.com/Blog/index/category/14/p/4
+ros技术点滴：https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU1NjEwMTY0Mw==&action=getalbum&album_id=1652733011081134091&scene=173&from_msgid=2247485886&from_itemidx=1&count=3&nolastread=1#wechat_redirect
+
+快速安装ros:
+https://blog.csdn.net/KIK9973/article/details/118755045
+
+
+视频推荐：
+古月·ROS入门21讲 | 一学就会的ROS机器人入门教程 ：https://www.bilibili.com/video/av59458869/
+
+ros理论与实践 胡春旭：https://www.shenlanxueyuan.com/course/473/task/15655/show
+ROS机器人开发实践 胡春旭：https://www.bilibili.com/video/BV1qL4y177Cv/?from=search
+朱老师推荐的ros课程：
+b站：https://www.bilibili.com/video/BV1b5411g7hr?p=1
+网盘：https://pan.baidu.com/s/1tJyM1viiceBehBTxcOFPpw 提取码：s7l8
+
+gitHub开源：
+ros best practices：https://github.com/leggedrobotics/ros_best_practices
+ros cheatsheet（已下载）：https://github.com/ros/cheatsheet
+
+硬件设备推荐：
+自动驾驶机器人小车：https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-23149348300.2.15ff718buPu1YA&id=645146809185
+
+1.5和1.6 创建学习计划和筛选资料
+（1）ros历史和现状学习，资料：
+    《ROS史话36篇》
+    机器人操作系统（ROS）浅析 1章
+    ros理论与实践第1章
+    ROS机器人开发实践 1章
+    
+（2）搭建环境，完成ros基本概念和常用命令学习，熟练玩起来小乌龟样例，资料：
+    ros Tutorials 初级教程的1~9节
+    机器人操作系统（ROS）浅析 2章节
+    ROS机器人开发实践 2章节和3章的部分
+    古月·ROS入门21讲 | 一学就会的ROS机器人入门教程 前9节
+    ros理论与实践 2章
+    
+（3）理解ros消息，利用c++编写publisher和subscriber
+    上述五项资料的对应章节
+    朱老师推荐的ros课程 对应章节
+    
+（4）理解ros消息，利用python编写publisher和subscriber
+    上述五项资料的对应章节
+    朱老师推荐的ros课程 对应章节
+    
+（5）理解ros的服务机制，利用C++编写server和client（操作ros参数）
+    上述五项资料的对应章节
+    朱老师推荐的ros课程 对应章节    
+    
+（6）理解ros的服务机制，利用python编写server和client
+    上述五项资料的对应章节
+    朱老师推荐的ros课程 对应章节   
+    
+（7）掌握rosbag工具行工具，并使用c++编写rosbag录制，读取，截断和回放样例
+    ros Tutorials 初级教程
+    机器人操作系统（ROS）浅析
+    ROS机器人开发实践
+    上述三项资料的对应章节
+    ars系列源码
+    
+（8）掌握rosbag工具行工具，并使用python编写rosbag录制，读取，截断和回放样例
+    ros Tutorials 初级教程
+    机器人操作系统（ROS）浅析
+    ROS机器人开发实践
+    上述三项资料的对应章节
+    ars系列源码
+
+
+2 第二部分--在各个知识模块循环往复
+
+2.1 ros历史和现状学习
+（1）由于是背景学习，因此直接通览收集到的资料，然后输出个人总结即可；
+（2）第一篇ros历史和现状：https://blog.csdn.net/cy1641395022/article/details/129078197
+
+2.2 搭建环境，完成ros基本概念和常用命令学习，熟练玩起来小乌龟样例
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130205195
+
+2.3 编写C++版ros publisher和subscriber
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130235903
+
+2.4 编写python版ros pub+sub
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130414656
+
+
+
+2.5 自定义ROS服务，编写C++ server+client样例
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130573678
+
+
+2.6 自定义ROS服务，编写python server+client样例
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130618651
+
+
+2.7 理解ROS的参数机制，编写C++操作参数样例
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130501112
+
+2.8 掌握rosbag工具，编写c++包录制、读取、截断和回放样例
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130718353
+
+
+2.9 掌握rosbag工具，编写python包录制、读取、截断和回放样例
+（1）输出文档：https://blog.csdn.net/cy1641395022/article/details/130875586
+
+
+3 接下来就是ros进阶，基于ros学习机器人算法
+
+    机器人操作系统浅析对接下来的学习建议：
+        1.掌握ros的网络配置，建立分布式系统
+        2.使用面向对象，编写更规范的程序
+        3.学习rviz
+        4.自定义消息和数据类型
+        5.使用ros的tf工具，管理多个坐标系
+        6.使用ros的仿真平台gazebo，利用他可以开发仿真机器人
+
+
+    ros理论与实践：
+        1.ros常用组件：launch，TF，rviz，Gazebo
+        2.URDF机器人建模
+        3.机器人仿真平台
+        4.机器视觉处理
+        5.机器人语音交互
+        6.机器人SLAM建图
+        7.机器人自主导航
+        8.机器人综合应用--迷宫寻宝
+
+    ROS机器人开发实践：
+        1.ROS常用组件：launch，TF，QT，rviz，Gazebo，rosbag
+        2.机器人平台搭建
+        3.机器人建模和仿真
+        4.机器视觉
+        5.机器语音
+        6.机器人slam建图和导航
+        7.moveit！机器臂
+        8.ros与机器学习
+        9.ros2
+
+
+
+------------------------------------------------------------------------------------------------
+
+## 3.1 chatGPT4.0使用经验
+写代码的过程中，我大量使用了chatGPT4.0，从一开始无脑信任它，到最后不知道该不该信任它。多次受骗以后，我逐步摸索出了一套沟通方法，记录在此：
+（1）对于较为复杂的代码，chatGPT给出来的往往是有bug的，而且很隐蔽，需要你调试半天，所以千万不要无脑相信它。
+（2）对于编译运行出现的问题，chatGPT的回答也是模棱两可的，所以调试代码，千万不要无脑依赖chatGPT。
+（3）因此，使用chatGPT，需要开发者自己要有清晰的思路，当遇到问题的时候，也要有自己的思考，用自己的思路引导它帮你。
+（4）对于chatGPT给出的不准确的地方，一定要使用google及时进行校验，不要一直无脑的问它，否则肯定会浪费大量时间。
+
+
+
+
+
+
+
