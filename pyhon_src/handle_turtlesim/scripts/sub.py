@@ -4,7 +4,7 @@ import rospy
 from turtlesim.msg import Pose
 
 def pose_cb(msg):
-    rospy.loginfo("i received: [%s, %s], direction: %s" %(msg.x, msg.y, msg.theta));
+    rospy.loginfo("i received: [%s, %s], direction: %s" %(msg.x, msg.y, msg.theta))
 
 def main():
     rospy.init_node("sub_pose")
